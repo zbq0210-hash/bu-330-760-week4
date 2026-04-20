@@ -36,17 +36,14 @@ agent = Agent(
 
 @agent.tool_plain
 def product_lookup(product_name: str) -> str:
-    """Look up product price from catalog. MUST be used for product questions."""
     with open("products.json", "r") as f:
         products = json.load(f)
 
-    # 
     for name, price in products.items():
         if name.lower() == product_name.lower():
-            return f"{name} costs ${price}"
+            return str(price)
 
-    # 
-    return f"Product not found. Available products: {', '.join(products.keys())}"
+    return ", ".join(products.keys())
 # TODO: Implement this tool by uncommenting the code below and replacing
 # the ... with your implementation. The tool should:
 #   1. Read products.json using json.load() (json is already imported above)
