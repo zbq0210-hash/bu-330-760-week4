@@ -27,21 +27,17 @@ agent = Agent(
 
 @agent.tool_plain
 def product_lookup(product_name: str) -> str:
-    """Look up the price of a product by name.
-    Use this when a question asks about product prices from the catalog.
-    """
+    """Look up product price from catalog. MUST be used for product questions."""
     with open("products.json", "r") as f:
         products = json.load(f)
 
-    # 查找商品
-    for product in products:
-        if product["name"].lower() == product_name.lower():
-            return str(product["price"])
+    # 
+    for name, price in products.items():
+        if name.lower() == product_name.lower():
+            return f"{name} costs ${price}"
 
-    # 如果没找到，返回所有商品名
-    names = [p["name"] for p in products]
-    return f"Product not found. Available products: {', '.join(names)}"
-
+    # 
+    return f"Product not found. Available products: {', '.join(products.keys())}"
 # TODO: Implement this tool by uncommenting the code below and replacing
 # the ... with your implementation. The tool should:
 #   1. Read products.json using json.load() (json is already imported above)
