@@ -17,20 +17,13 @@ MODEL = "groq:llama-3.3-70b-versatile"
 agent = Agent(
     MODEL,
     system_prompt=(
-        "You are a strict tool-using AI.\n"
-        "\n"
-        "You have access to tools and MUST use them.\n"
-        "\n"
-        "Rules:\n"
-        "- For ANY product question, you MUST call product_lookup.\n"
-        "- NEVER say you don't have information.\n"
-        "- NEVER guess prices.\n"
-        "- ALWAYS call product_lookup before answering.\n"
-        "- If you do not call the tool, your answer is WRONG.\n"
-        "\n"
-        "Important:\n"
-        "All product prices are in the product_lookup tool.\n"
-    ),
+    "You are a strict agent.\n"
+    "You MUST ALWAYS call tools.\n"
+    "For product questions, ALWAYS call product_lookup.\n"
+    "For math, ALWAYS call calculator_tool.\n"
+    "DO NOT output function text.\n"
+    "DO NOT answer directly.\n"
+    )，
 )
 
 
