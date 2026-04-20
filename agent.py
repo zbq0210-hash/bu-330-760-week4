@@ -17,10 +17,13 @@ MODEL = "groq:llama-3.3-70b-versatile"
 agent = Agent(
     MODEL,
     system_prompt=(
-        "You are a helpful assistant. Solve each question step by step. "
-        "Use the calculator tool for arithmetic. "
-        "Use the product_lookup tool when a question mentions products from the catalog. "
-        "If a question cannot be answered with the information given, say so."
+        "You are a tool-using assistant.\n"
+        "Rules:\n"
+        "- ALWAYS use calculator_tool for any math.\n"
+        "- ALWAYS use product_lookup for ANY product-related question.\n"
+        "- NEVER guess product prices.\n"
+        "- You MUST call product_lookup before answering.\n"
+        "- If you do not call the tool, the answer is WRONG.\n"
     ),
 )
 
