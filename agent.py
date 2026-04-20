@@ -26,13 +26,21 @@ agent = Agent(
 
 
 @agent.tool_plain
-def calculator_tool(expression: str) -> str:
-    """Evaluate a math expression and return the result.
-
-    Examples: "847 * 293", "10000 * (1.07 ** 5)", "23 % 4"
+def product_lookup(product_name: str) -> str:
+    """Look up the price of a product by name.
+    Use this when a question asks about product prices from the catalog.
     """
-    return calculate(expression)
+    with open("products.json", "r") as f:
+        products = json.load(f)
 
+    # 查找商品
+    for product in products:
+        if product["name"].lower() == product_name.lower():
+            return str(product["price"])
+
+    # 如果没找到，返回所有商品名
+    names = [p["name"] for p in products]
+    return f"Product not found. Available products: {', '.join(names)}"
 
 # TODO: Implement this tool by uncommenting the code below and replacing
 # the ... with your implementation. The tool should:
