@@ -12,7 +12,7 @@ load_dotenv()
 #   "google-gla:gemini-2.5-flash"       (needs GOOGLE_API_KEY)
 #   "openai:gpt-4o-mini"                (needs OPENAI_API_KEY)
 #   "anthropic:claude-sonnet-4-6"    (needs ANTHROPIC_API_KEY)
-MODEL = "MODEL = "groq:llama-3.3-70b-versatile""
+MODEL = "groq:llama-3.3-70b-versatile"
 
 agent = Agent(
     MODEL,
